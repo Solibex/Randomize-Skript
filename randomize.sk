@@ -1,0 +1,4 @@
+on load:
+	loop all recipes:
+		set loop-value to random recipe of all recipes
+		
