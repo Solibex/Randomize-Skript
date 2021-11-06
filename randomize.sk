@@ -1,4 +1,5 @@
 on load:
 	loop all recipes:
-		set loop-value to random recipe of all recipes
-		
+		set {_recipe} to random recipe of all recipes
+		if loop-value is not {_recipe}:
+			set loop-value to {_recipe}
