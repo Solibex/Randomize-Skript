@@ -6,4 +6,4 @@ function retry(data) {
 	}
 	console.log("Retry",data)
 }
-retry("air")
+retry("test")
