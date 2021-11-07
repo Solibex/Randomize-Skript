@@ -1,5 +1,19 @@
-on load:
-	loop all recipes:
-		set {_recipe} to random recipe of all recipes
-		if loop-value is not {_recipe}:
-			set loop-value to {_recipe}
+aliases:
+	blacklist = bedrock, barrier
+
+command /randomize:
+	permission: randomize.admin
+	trigger:
+		if {randomize} is false:
+			set {randomize} to true
+			send "&cSet randomize crafting to true, its going to be hardcore"
+			send "&cRANDOMIZE IS" with subtitle "&cENABLED" to all players
+		else:
+			set {randomize} to false
+			send "&aSet randomize crafting to false"
+			send "&aRANDOMIZE IS" with subtitle "&aDISABLED" to all players
+on craft:
+	if {randomize} is true:
+		set {_i} to random item out of all items
+		if {_i} is not blacklist:
+			set event-item to {_i}
