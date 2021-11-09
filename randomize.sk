@@ -18,8 +18,25 @@ command /randomize <text>:
 			else:
 				set {randomize::block} to true
 				send "&aEnabled Randomize Block"
+		else if arg-1 is "place":
+			if {randomize::place} is true:
+				set {randomize::place} to false
+				send "&cDisabled Randomize Block-place"
+			else:
+				set {randomize::place} to true
+				send "&aEnabled Randomize Block-place"
 on craft:
 	if {randomize::crafting} is true:
 		set {_i} to random item out of all items
 		if {_i} is not blacklist:
 			set event-slot to {_i}
+on place:
+	if {randomize::place} is true:
+		set {_i} to random block out of all items
+		if {_i} is not blacklist:
+			set event-block to {_i}
+on break:
+	if {randomize::block} is true:
+		set {_i} to random item out of all items
+		if {_i} is not blacklist:
+			set event-item to {_i}
