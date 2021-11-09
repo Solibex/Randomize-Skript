@@ -4,6 +4,7 @@ aliases:
 command /randomize <text>:
 	permission: randomize.admin
 	trigger:
+		# Randomize craft ON/OFF
 		if arg-1 is "crafting":
 			if {randomize::crafting} is true:
 				set {randomize::crafting} to false
@@ -11,6 +12,7 @@ command /randomize <text>:
 			else:
 				set {randomize::crafting} to true
 				send "&aEnabled Randomize Crafting"
+		#Randomize block ON/OFF
 		else if arg-1 is "block":
 			if {randomize::block} is true:
 				set {randomize::block} to false
@@ -18,6 +20,7 @@ command /randomize <text>:
 			else:
 				set {randomize::block} to true
 				send "&aEnabled Randomize Block"
+		# Randomize block-place ON/OFF
 		else if arg-1 is "place":
 			if {randomize::place} is true:
 				set {randomize::place} to false
@@ -31,11 +34,13 @@ on craft:
 		set {_i} to random item out of all items
 		if {_i} is not blacklist:
 			set event-slot to {_i}
+# Randomize Place
 on place:
 	if {randomize::place} is true:
 		set {_i} to random block out of all items
 		if {_i} is not blacklist:
 			set event-block to {_i}
+# Randomize Break
 on break:
 	if {randomize::block} is true:
 		set {_i} to random item out of all items
