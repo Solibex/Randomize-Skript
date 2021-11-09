@@ -25,6 +25,7 @@ command /randomize <text>:
 			else:
 				set {randomize::place} to true
 				send "&aEnabled Randomize Block-place"
+# Randomize Craft
 on craft:
 	if {randomize::crafting} is true:
 		set {_i} to random item out of all items
