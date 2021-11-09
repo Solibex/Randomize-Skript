@@ -1,19 +1,18 @@
 aliases:
 	blacklist = bedrock, barrier
 
-command /randomize:
+command /randomize <text>:
 	permission: randomize.admin
 	trigger:
-		if {randomize} is false:
-			set {randomize} to true
-			send "&cSet randomize crafting to true, its going to be hardcore"
-			send "&cRANDOMIZE IS" with subtitle "&cENABLED" to all players
-		else:
-			set {randomize} to false
-			send "&aSet randomize crafting to false"
-			send "&aRANDOMIZE IS" with subtitle "&aDISABLED" to all players
+		if arg-1 is crafting:
+			if {randomize::crafting} is true:
+				set {randomize::crafting} to false
+				send "&cDisabled Randomize Crafting"
+			else:
+				set {randomize::crafting} to true
+				send "&aEnabled Randomize Crafting"
 on craft:
-	if {randomize} is true:
+	if {randomize::crafting} is true:
 		set {_i} to random item out of all items
 		if {_i} is not blacklist:
-			set event-item to {_i}
+			set event-slot to {_i}
